@@ -3,26 +3,111 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ps4 lapse</title>
+<title>PS4 Lapse - TopTech</title>
 <style>
-  html, body { margin:0; padding:0; background:#0b0d10; color:#c8ced8;
-               font:15px/1.45 "Segoe UI", system-ui, sans-serif; }
-  #wrap { padding:16px 18px; }
-  #state { font-size:22px; font-weight:700; margin:0 0 10px; }
-  #out { white-space:pre-wrap; font:12px/1.45 Consolas, monospace;
-         background:#11151b; border:1px solid #1e2732; border-radius:5px;
-         padding:10px 12px; height:calc(100vh - 141px); overflow-y:auto; }
-  .ok { color:#7fd0a0; } .bad { color:#d08a7f; } .warn { color:#d8c07f; }
-  #brand { text-align:center; padding:8px 10px; background:#0e1116;
-           border-bottom:1px solid #1e2732; }
-  #brand img { width:28px; height:28px; margin-right:8px; border-radius:50%;
-               vertical-align:middle; }
-  #brand b { font-size:15px; font-weight:700; letter-spacing:.14em;
-             color:#e6ebf2; vertical-align:middle; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .55; }
+  }
+  @keyframes scan {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 40px; }
+  }
+  html, body {
+    margin: 0; padding: 0; min-height: 100%;
+    background: #05080c;
+    color: #b8c9d4;
+    font: 15px/1.5 "Consolas", "Courier New", monospace;
+  }
+  body::before {
+    content: "";
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      linear-gradient(rgba(0, 240, 255, .03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 240, 255, .03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  body::after {
+    content: "";
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, .12) 2px,
+      rgba(0, 0, 0, .12) 4px
+    );
+    animation: scan 8s linear infinite;
+  }
+  #brand {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap;
+    padding: 10px 16px;
+    background: linear-gradient(180deg, #0a1218 0%, #070d12 100%);
+    border-bottom: 1px solid #1a3a45;
+    box-shadow: 0 1px 0 rgba(0, 240, 255, .15);
+  }
+  .brand-left { display: flex; align-items: center; gap: 10px; }
+  #brand img {
+    width: 30px; height: 30px; border-radius: 4px;
+    border: 1px solid #1a4a55;
+    vertical-align: middle;
+  }
+  #brand b {
+    font-size: 16px; font-weight: 700; letter-spacing: .22em;
+    text-transform: uppercase; color: #e8f7fc;
+    text-shadow: 0 0 12px rgba(0, 240, 255, .35);
+  }
+  .brand-right {
+    display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+    font-size: 12px; letter-spacing: .04em;
+  }
+  .brand-right a {
+    color: #5eead4; text-decoration: none;
+    border-bottom: 1px solid rgba(94, 234, 212, .25);
+  }
+  .brand-right a:hover { color: #a7f3d0; border-bottom-color: #5eead4; }
+  .brand-right .sep { color: #1a3a45; }
+  #wrap {
+    position: relative; z-index: 1;
+    padding: 18px 20px;
+  }
+  #state {
+    font-size: 20px; font-weight: 700; margin: 0 0 12px;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: #e8f7fc;
+  }
+  #state.warn { color: #f0d060; animation: pulse 1.6s ease-in-out infinite; }
+  #out {
+    white-space: pre-wrap;
+    font: 12px/1.5 Consolas, "Courier New", monospace;
+    background: rgba(6, 14, 20, .92);
+    border: 1px solid #1a3a45;
+    border-left: 3px solid #00d4e8;
+    border-radius: 2px;
+    padding: 12px 14px;
+    height: calc(100vh - 160px);
+    overflow-y: auto;
+    color: #9ec4d4;
+    box-shadow: inset 0 0 40px rgba(0, 40, 50, .35);
+  }
+  .ok { color: #34d399; }
+  .bad { color: #f87171; }
+  .warn { color: #f0d060; }
 </style>
 </head>
 <body>
-<div id="brand"><img src="logo_raw.png" alt="" width="28" height="28"><b>RAW GAME</b></div>
+<div id="brand">
+  <div class="brand-left">
+    <img src="logo_raw.png" alt="" width="30" height="30"><b>TopTech</b>
+  </div>
+  <div class="brand-right">
+    <a href="tel:+963935446807">+963935446807</a>
+    <span class="sep">|</span>
+    <a href="http://www.toptech.com.sy" target="_blank" rel="noopener">www.toptech.com.sy</a>
+  </div>
+</div>
 <div id="wrap">
   <div id="state">loading lapse chain...</div>
   <div id="out"></div>
